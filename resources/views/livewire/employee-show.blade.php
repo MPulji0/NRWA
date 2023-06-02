@@ -1,21 +1,20 @@
 <div>
-
-    @include('livewire.customermodal')
-
+    @include('livewire.employeemodal')
+    
     <div class="container">
-    <a href="{{ url('/employees') }}" class="btn btn-primary">{{ __('Employees') }}</a>
+    <a href="{{ url('/customers') }}" class="btn btn-primary me-3">{{ __('Customers') }}</a>
         <div class="row">
             <div class="col-md-12">
                 @if (session()->has('message'))
                     <h5 class="alert alert-success">{{ session('message') }}</h5>
                 @endif
-
+ 
                 <div class="card">
                     <div class="card-header">
-                        <h4>Customer CRUD
+                        <h4>Employee CRUD
                             <input type="search" wire:model="search" class="form-control float-end mx-2" placeholder="Search..." style="width: 230px" />
-                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#customerModal">
-                                Add New Customer
+                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#employeeModal">
+                                Add New Employee
                             </button>
                         </h4>
                     </div>
@@ -24,40 +23,40 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>City</th>
+                                    <th>NationalIDnumber</th>
+                                    <th>Title</th>
+                                    <th>BirthDate</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($customers as $customer)
+                                @forelse ($employees as $employee)
                                     <tr>
-                                        <td>{{ $customer->id }}</td>
-                                        <td>{{ $customer->Name }}</td>
-                                        <td>{{ $customer->Email }}</td>
-                                        <td>{{ $customer->City }}</td>
+                                        <td>{{ $employee->id }}</td>
+                                        <td>{{ $employee->nationalidnumber }}</td>
+                                        <td>{{ $employee->title }}</td>
+                                        <td>{{ $employee->birthdate }}</td>
                                         <td>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#updateCustomerModal" wire:click="editCustomer({{$customer->id}})" class="btn btn-primary">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#updateEmployeeModal" wire:click="editEmployee({{$employee->id}})" class="btn btn-primary">
                                                 Edit
                                             </button>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal" wire:click="deleteCustomer({{$customer->id}})" class="btn btn-danger">Delete</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" wire:click="deleteEmployee({{$employee->id}})" class="btn btn-danger">Delete</button>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5">No Customer Found</td>
+                                        <td colspan="5">No Employee Found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                         <div>
-                            {{ $customers->links() }}
+                            {{ $employees->links() }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
+ 
+</div> 
