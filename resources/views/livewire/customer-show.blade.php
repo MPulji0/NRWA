@@ -4,6 +4,7 @@
 
     <div class="container">
     <a href="{{ url('/employees') }}" class="btn btn-primary">{{ __('Employees') }}</a>
+    <a href="{{ url('/contacts') }}" class="btn btn-primary">{{ __('Contacts') }}</a>
         <div class="row">
             <div class="col-md-12">
                 @if (session()->has('message'))

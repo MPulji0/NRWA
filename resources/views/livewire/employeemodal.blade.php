@@ -48,17 +48,17 @@
             <form wire:submit.prevent="updateEmployee">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>Student NationalIDNumber</label>
+                        <label>Employee NationalIDNumber</label>
                         <input type="text" wire:model="nationalidnumber" class="form-control">
                         @error('nationalidnumber') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label>Student Title</label>
+                        <label>Employee Title</label>
                         <input type="text" wire:model="title" class="form-control">
                         @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
-                        <label>Student BirthDate</label>
+                        <label>Employee BirthDate</label>
                         <input type="date" wire:model="birthdate" class="form-control">
                         @error('birthdate') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>

@@ -1,9 +1,8 @@
 <div>
-    @include('livewire.employeemodal')
-    
+    @include('livewire.contactmodal')
     <div class="container">
     <a href="{{ url('/customers') }}" class="btn btn-primary me-3">{{ __('Customers') }}</a>
-    <a href="{{ url('/contacts') }}" class="btn btn-primary me-3">{{ __('Contacts') }}</a>
+    <a href="{{ url('/employees') }}" class="btn btn-primary me-3">{{ __('Employees') }}</a>
         <div class="row">
             <div class="col-md-12">
                 @if (session()->has('message'))
@@ -12,10 +11,10 @@
  
                 <div class="card">
                     <div class="card-header">
-                        <h4>Employee CRUD
+                        <h4>Contact CRUD 
                             <input type="search" wire:model="search" class="form-control float-end mx-2" placeholder="Search..." style="width: 230px" />
-                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#employeeModal">
-                                Add New Employee
+                            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#contactModal">
+                                Add New Contact
                             </button>
                         </h4>
                     </div>
@@ -24,35 +23,38 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>NationalIDnumber</th>
                                     <th>Title</th>
-                                    <th>BirthDate</th>
-                                    <th>Actions</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>ModifiedDate</th>
+                                    <th>Customer ID</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($employees as $employee)
+                                @forelse ($contacts as $contact)
                                     <tr>
-                                        <td>{{ $employee->id }}</td>
-                                        <td>{{ $employee->nationalidnumber }}</td>
-                                        <td>{{ $employee->title }}</td>
-                                        <td>{{ $employee->birthdate }}</td>
+                                        <td>{{ $contact->id }}</td>
+                                        <td>{{ $contact->title }}</td>
+                                        <td>{{ $contact->customer->Name }}</td>
+                                        <td>{{ $contact->phone }}</td>
+                                        <td>{{ $contact->ModifiedDate }}</td>
+                                        <td>{{ $contact->customer_id }}</td>
                                         <td>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#updateEmployeeModal" wire:click="editEmployee({{$employee->id}})" class="btn btn-primary">
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#updateContactModal" wire:click="editContact({{$contact->id}})" class="btn btn-primary">
                                                 Edit
                                             </button>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal" wire:click="deleteEmployee({{$employee->id}})" class="btn btn-danger">Delete</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteContactModal" wire:click="deleteContact({{$contact->id}})" class="btn btn-danger">Delete</button>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5">No Employee Found</td>
+                                        <td colspan="5">No Contact Found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                         <div>
-                            {{ $employees->links() }}
+                            {{ $contacts->links() }}
                         </div>
                     </div>
                 </div>

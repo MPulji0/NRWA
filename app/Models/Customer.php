@@ -17,4 +17,8 @@ class Customer extends Model
         'city',
         
     ];
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
+    }
 }

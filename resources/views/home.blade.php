@@ -18,8 +18,10 @@
 
                     <div class="d-flex">
                         <a href="{{ url('/customers') }}" class="btn btn-primary me-3">{{ __('Customers') }}</a>
+                        <a href="{{ url('/contacts') }}" class="btn btn-primary me-3">{{ __('Contacts') }}</a>
                         <a href="{{ url('/employees') }}" class="btn btn-primary">{{ __('Employees') }}</a>
                     </div>
+
                 </div>
             </div>
         </div>
