@@ -5,6 +5,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ContactController;
 
+
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,12 +68,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth','middleware' => 'is_admin'], function () {
     Route::delete('/employees/{employee}',[EmployeeController::class, 'destroy'])->name('employees.destroy');
-    Route::delete('/customers/{customers}',[contactController::class, 'destroy'])->name('customers.destroy');
-    Route::delete('/contacts/{contact}',[MovieController::class, 'destroy'])->name('contacts.destroy');
+    Route::delete('/customers/{customers}',[ContactController::class, 'destroy'])->name('customers.destroy');
+    Route::delete('/contacts/{contact}',[CustomerController::class, 'destroy'])->name('contacts.destroy');
     
     
     
+    Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.delete')->middleware('auth');
+
+
     Route::resource('contacts', ContactController::class);
+    
 });
-
-

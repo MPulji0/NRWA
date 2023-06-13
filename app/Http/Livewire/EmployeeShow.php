@@ -94,7 +94,7 @@ class EmployeeShow extends Component
     public function render()
     {
         $employees = Employee::where('title', 'like', '%'.$this->search.'%')->orderBy('id','DESC')->paginate(3);
-        //$students = Student::select('id','name','email','course')->get();
+        
         return view('livewire.employee-show', ['employees' => $employees]);
     }
 }
