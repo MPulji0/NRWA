@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Livewire\ContactShow;
+use App\Http\Livewire\CustomerShow;
+use App\Http\Livewire\EmployeeShow;
+
 
 
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::resource('customers', CustomerController::class);
     Route::resource('employees', EmployeeController::class);
+   
 
 
 
@@ -77,5 +82,8 @@ Route::group(['middleware' => 'auth','middleware' => 'is_admin'], function () {
 
 
     Route::resource('contacts', ContactController::class);
-    
+    Route::get('employees/{employee}/edit', [EmployeeController::class, 'show'])->name('employees.show');
+
+ 
+
 });
